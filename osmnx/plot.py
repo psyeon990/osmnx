@@ -299,7 +299,7 @@ def plot_graph_route(
     y = []
     for u, v in zip(route[:-1], route[1:]):
         # if there are parallel edges, select the shortest in length
-        data = min(G.get_edge_data(u, v).values(), key=lambda d: d["length"])
+        data = min(G.get_edge_data(u, v, default={0:{'length':0}}).values(), key=lambda x: x['length'])
         if "geometry" in data:
             # if geometry attribute exists, add all its coords to list
             xs, ys = data["geometry"].xy
